@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prateek - Premium Mobile Editing Bundle</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Styles */
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color: #333;
+        }
+        
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1554080351-a76ca4bcf5ed?ixlib=rb-4.0.3');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+            z-index: 0;
+        }
+        
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .feature-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 16px;
+            overflow: hidden;
+            background: white;
+            height: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #f5af19 0%, #f12711 100%);
+            color: white;
+            font-weight: 600;
+            padding: 12px 30px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .pricing-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transition: transform 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            transform: scale(1.03);
+        }
+        
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            font-size: 24px;
+        }
+        
+        .bundle-thumbnail {
+            max-width: 800px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border: 8px solid white;
+            margin: 0 auto;
+        }
+        
+        /* Legal section styles */
+        .legal-section {
+            background-color: #f8f9fa;
+            border-top: 1px solid #e9ecef;
+            padding: 40px 0;
+        }
+        
+        .legal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #495057;
+        }
+        
+        .legal-content {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #6c757d;
+        }
+        
+        /* Contact section styles */
+        .contact-section {
+            background-color: #f8f9fa;
+            padding: 60px 0;
+        }
+        
+        .contact-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .contact-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info i {
+            font-size: 24px;
+            color: #667eea;
+            margin-right: 15px;
+            width: 30px;
+            text-align: center;
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #764ba2;
+        }
+        
+        .close {
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #aaa;
+        }
+        
+        .close:hover {
+            color: #000;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #764ba2;
+            box-shadow: 0 0 0 3px rgba(118, 75, 162, 0.1);
+        }
+        
+        .btn-paytm {
+            background-color: #00BAF2;
+            color: white;
+            font-weight: 600;
+            padding: 12px 30px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+            width: 100%;
+            text-align: center;
+            font-size: 16px;
+        }
+        
+        .btn-paytm:hover {
+            background-color: #0099CC;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .warning-box {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 12px;
+            margin-top: 20px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .warning-box i {
+            color: #ffc107;
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .warning-text {
+            color: #856404;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .feature-card {
+                margin-bottom: 20px;
+            }
+            
+            .bundle-thumbnail {
+                max-width: 100%;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white shadow-md z-50">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <div class="text-2xl font-bold text-purple-700">Prateek</div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#features" class="text-gray-700 hover:text-purple-600">Features</a>
+                    <a href="#pricing" class="text-gray-700 hover:text-purple-600">Pricing</a>
+                    <a href="#contact" class="text-gray-700 hover:text-purple-600">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero flex items-center justify-center text-white">
+        <div class="container mx-auto px-6 py-24 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4" data-aos="fade-up">Prateek's Mobile Editing Bundle</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                Premium CapCut templates, professional fonts, and comprehensive guides for mobile creators
+            </p>
+            <div class="flex justify-center" data-aos="fade-up" data-aos-delay="400">
+                <button id="buyNowBtn" class="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-3 px-8 rounded-full text-lg transition transform hover:scale-105">
+                    Buy Now - ₹79
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bundle Thumbnail Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Bundle Preview</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">See what's included in our premium mobile editing bundle</p>
+            </div>
+            
+            <div class="flex justify-center" data-aos="zoom-in">
+                <img src="tumbnail.png" alt="Prateek's Mobile Editing Bundle" class="bundle-thumbnail">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4" data-aos="fade-up">What's Inside the Bundle?</h2>
+            <p class="text-center text-gray-600 max-w-2xl mx-auto mb-16" data-aos="fade-up" data-aos-delay="100">
+                Everything you need to create stunning mobile content in one comprehensive package
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1: CapCut Templates -->
+                <div class="feature-card p-6" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="icon-box bg-blue-100 text-blue-600">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">CapCut Templates</h3>
+                    <p class="text-gray-600 mb-4">Professional templates for quick and stunning video edits</p>
+                    <ul class="text-sm text-gray-700">
+                        <li class="mb-1">✓ 30 Premium Templates</li>
+                        <li class="mb-1">✓ Trending Transitions</li>
+                        <li class="mb-1">✓ Text Animations</li>
+                        <li>✓ Easy to Use</li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 2: Fonts -->
+                <div class="feature-card p-6" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="icon-box bg-purple-100 text-purple-600">
+                        <i class="fas fa-font"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Premium Fonts</h3>
+                    <p class="text-gray-600 mb-4">Professional fonts to make your text stand out</p>
+                    <ul class="text-sm text-gray-700">
+                        <li class="mb-1">✓ 10+ Premium Fonts</li>
+                        <li class="mb-1">✓ Montserrat</li>
+                        <li class="mb-1">✓ Bebas Neue</li>
+                        <li>✓ Perfect for Social Media</li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 3: Guides -->
+                <div class="feature-card p-6" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="icon-box bg-green-100 text-green-600">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Comprehensive Guides</h3>
+                    <p class="text-gray-600 mb-4">Learn professional techniques with our detailed guides</p>
+                    <ul class="text-sm text-gray-700">
+                        <li class="mb-1">✓ Editing Guide</li>
+                        <li class="mb-1">✓ Color Grading Guide</li>
+                        <li class="mb-1">✓ Social Media Guide</li>
+                        <li>✓ CapCut VPN Guide</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">Get Your Bundle Today</h2>
+            
+            <div class="max-w-md mx-auto bg-gradient-to-br from-purple-600 to-indigo-700 rounded-2xl shadow-xl p-8 text-white pricing-card" data-aos="zoom-in">
+                <h3 class="text-2xl font-bold mb-2 text-center">Prateek's Mobile Editing Bundle</h3>
+                <div class="text-center mb-6">
+                    <span class="text-4xl font-bold">₹79</span>
+                    <span class="text-lg">one-time payment</span>
+                </div>
+                
+                <ul class="mb-8 space-y-3">
+                    <li class="flex items-center">
+                        <svg class="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        30+ CapCut Templates
+                    </li>
+                    <li class="flex items-center">
+                        <svg class="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        10+ Premium Fonts
+                    </li>
+                    <li class="flex items-center">
+                        <svg class="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        4 Comprehensive Guides
+                    </li>
+                    <li class="flex items-center">
+                        <svg class="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        Lifetime Access
+                    </li>
+                </ul>
+                
+                <button id="buyNowBtn2" class="w-full bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-3 px-6 rounded-full text-lg transition transform hover:scale-105">
+                    Buy Now - ₹79
+                </button>
+                
+                <p class="text-center text-sm mt-4 text-purple-200">Instant download after payment</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">Contact Us</h2>
+            
+            <div class="contact-card" data-aos="zoom-in">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-bold mb-6">Get in Touch</h3>
+                        
+                        <div class="contact-info">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4 class="font-bold">Email</h4>
+                                <p class="text-gray-600">support@prateek.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-info">
+                            <i class="fab fa-instagram"></i>
+                            <div>
+                                <h4 class="font-bold">Instagram</h4>
+                                <p class="text-gray-600">@prateek</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-info">
+                            <i class="fab fa-youtube"></i>
+                            <div>
+                                <h4 class="font-bold">YouTube</h4>
+                                <p class="text-gray-600">Prateek Creations</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold mb-6">Send a Message</h3>
+                        <form id="contactForm">
+                            <div class="mb-4">
+                                <input type="text" id="name" placeholder="Your Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600">
+                            </div>
+                            <div class="mb-4">
+                                <input type="email" id="email" placeholder="Your Email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600">
+                            </div>
+                            <div class="mb-4">
+                                <textarea id="message" placeholder="Your Message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg transition">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Legal Section -->
+    <section class="legal-section">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <h3 class="legal-title text-center" data-aos="fade-up">Legal Information</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div data-aos="fade-right">
+                        <h4 class="font-bold mb-2">Terms of Service</h4>
+                        <p class="legal-content">
+                            By purchasing this bundle, you agree to our terms of service. The digital products included are for personal use only. 
+                            Commercial use requires an additional license. We do not offer refunds for digital products once they have been downloaded.
+                        </p>
+                    </div>
+                    <div data-aos="fade-left">
+                        <h4 class="font-bold mb-2">Privacy Policy</h4>
+                        <p class="legal-content">
+                            We respect your privacy and are committed to protecting your personal data. This privacy policy explains how we collect, 
+                            use, and safeguard your information when you use our website and purchase our products.
+                        </p>
+                    </div>
+                </div>
+                <div class="mt-8 text-center" data-aos="fade-up">
+                    <p class="legal-content">
+                        © 2025 Prateek. All rights reserved. This website and all its contents are protected by copyright law.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h2 class="text-2xl font-bold">Prateek</h2>
+                    <p class="text-gray-400">Mobile editing resources for creators</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white">Terms of Service</a>
+                    <a href="#contact" class="text-gray-400 hover:text-white">Contact</a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500">
+                <p>© 2025 Prateek. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Complete Your Purchase</h3>
+                <span class="close">&times;</span>
+            </div>
+            <form id="paymentForm">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+                </div>
+                <button type="submit" class="btn-paytm">
+                    <i class="fab fa-paytm mr-2"></i> Pay with Paytm - ₹79
+                </button>
+            </form>
+            
+            <!-- Warning Box -->
+            <div class="warning-box">
+                <i class="fas fa-exclamation-triangle"></i>
+                <div class="warning-text">
+                    <strong>Important:</strong> After successful payment, a download link will be sent to your email. 
+                    This link will expire in 15 minutes for security reasons. Please download your product immediately.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AOS Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 1000,
+                once: true
+            });
+            
+            const buyNowBtn = document.getElementById('buyNowBtn');
+            const buyNowBtn2 = document.getElementById('buyNowBtn2');
+            const paymentModal = document.getElementById('paymentModal');
+            const closeModal = document.querySelector('.close');
+            const paymentForm = document.getElementById('paymentForm');
+            
+            // Backend URL - Replace with your Render.com URL
+            const backendUrl = 'https://prateek-backend-wa5y.onrender.com';
+            
+            // Open payment modal
+            buyNowBtn.addEventListener('click', () => {
+                paymentModal.style.display = 'flex';
+            });
+            
+            buyNowBtn2.addEventListener('click', () => {
+                paymentModal.style.display = 'flex';
+            });
+            
+            // Close modal
+            closeModal.addEventListener('click', () => {
+                paymentModal.style.display = 'none';
+            });
+            
+            window.addEventListener('click', (event) => {
+                if (event.target === paymentModal) {
+                    paymentModal.style.display = 'none';
+                }
+            });
+            
+            // Handle payment form submission
+            paymentForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                
+                // Create order
+                try {
+                    const response = await fetch(`${backendUrl}/create-order`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            amount: '79.00',
+                            email: email,
+                            phone: phone
+                        })
+                    });
+                    
+                    if (!response.ok) {
+                        throw new Error('Failed to create order');
+                    }
+                    
+                    const order = await response.json();
+                    
+                    // Initialize Paytm payment
+                    const paytmUrl = `https://securegw.paytm.in/order/process?orderId=${order.orderId}&mid=${order.mid}&txnToken=${order.txnToken}&amount=${order.amount}`;
+                    
+                    // Open Paytm payment page
+                    window.location.href = paytmUrl;
+                    
+                    // Store order details for verification after payment
+                    sessionStorage.setItem('pendingOrder', JSON.stringify({
+                        orderId: order.orderId,
+                        email: email
+                    }));
+                    
+                } catch (error) {
+                    console.error('Error creating order:', error);
+                    alert('Something went wrong. Please try again.');
+                }
+            });
+            
+            // Check for pending order on page load
+            window.addEventListener('load', async () => {
+                const pendingOrder = sessionStorage.getItem('pendingOrder');
+                
+                if (pendingOrder) {
+                    try {
+                        const { orderId, email } = JSON.parse(pendingOrder);
+                        
+                        // Verify payment
+                        const response = await fetch(`${backendUrl}/verify-payment`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                orderId: orderId,
+                                email: email
+                            })
+                        });
+                        
+                        const result = await response.json();
+                        
+                        if (result.status === 'ok') {
+                            // Clear pending order
+                            sessionStorage.removeItem('pendingOrder');
+                            
+                            // Show success message
+                            showEmailSentMessage();
+                        }
+                    } catch (error) {
+                        console.error('Error verifying payment:', error);
+                    }
+                }
+            });
+            
+            // Contact form submission
+            document.getElementById('contactForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
+                
+                // Simple validation
+                if (!name || !email || !message) {
+                    alert('Please fill in all fields');
+                    return;
+                }
+                
+                try {
+                    const response = await fetch(`${backendUrl}/contact`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            name: name,
+                            email: email,
+                            message: message
+                        })
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (result.status === 'ok') {
+                        // Show success message
+                        const successHtml = `
+                            <div class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+                                <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
+                                    <div class="text-center">
+                                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                            <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                        </div>
+                                        <h2 class="text-2xl font-bold mb-2">Message Sent!</h2>
+                                        <p class="text-gray-600 mb-6">Thank you for contacting us. We'll get back to you soon.</p>
+                                        <button onclick="this.parentElement.parentElement.parentElement.remove()" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full transition">
+                                            Close
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        
+                        // Append success page to body
+                        document.body.insertAdjacentHTML('beforeend', successHtml);
+                        
+                        // Reset form
+                        this.reset();
+                    } else {
+                        alert('Failed to send message. Please try again.');
+                    }
+                } catch (error) {
+                    console.error('Error sending contact form:', error);
+                    alert('Failed to send message. Please try again.');
+                }
+            });
+            
+            // Function to show email sent message
+            function showEmailSentMessage() {
+                // Create email sent message HTML
+                const emailSentHtml = `
+                    <div class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+                        <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                    </svg>
+                                </div>
+                                <h2 class="text-2xl font-bold mb-2">Payment Successful!</h2>
+                                <p class="text-gray-600 mb-6">Thank you for your purchase. We've sent a download link to your email.</p>
+                                
+                                <!-- Warning Box in Success Message -->
+                                <div class="warning-box mb-4">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    <div class="warning-text">
+                                        <strong>Important:</strong> The download link will expire in 15 minutes for security reasons. 
+                                        Please download your product immediately and check your spam folder if you don't see the email.
+                                    </div>
+                                </div>
+                                
+                                <button onclick="this.parentElement.parentElement.parentElement.remove()" class="mt-2 bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded-full transition">
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                // Append email sent message to body
+                document.body.insertAdjacentHTML('beforeend', emailSentHtml);
+            }
+        });
+    </script>
+</body>
+</html>
